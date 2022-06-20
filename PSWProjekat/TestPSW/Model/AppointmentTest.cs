@@ -24,25 +24,23 @@ namespace TestPSW.Model
             User userDoctor = new User();
             hospital.Id = 1;
             userDoctor.Id = 1;
-            appointment.AppointmentTimeEnd = DateTime.MaxValue;
-            appointment.AppointmentTimeStart = DateTime.MaxValue;
+            appointment.AppointmentDate = DateTime.MaxValue;
+            appointment.AppointmentTime = TimeSpan.MaxValue;
             appointment.Hospital = hospital;
             appointment.DateCreated = DateTime.MaxValue;
             appointment.DateUpdated = DateTime.MaxValue;
             appointment.Deleted = false;
             appointment.Id = 1;
             appointment.UserDoctor = userDoctor;
-            appointment.Priority = false;
 
-            Assert.AreEqual(appointment.AppointmentTimeEnd, DateTime.MaxValue);
-            Assert.AreEqual(appointment.AppointmentTimeStart, DateTime.MaxValue);
+            Assert.AreEqual(appointment.AppointmentDate, DateTime.MaxValue);
+            Assert.AreEqual(appointment.AppointmentTime, DateTime.MaxValue);
             Assert.AreEqual(appointment.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(appointment.DateUpdated, DateTime.MaxValue);
             Assert.AreEqual(appointment.Deleted, false);
             Assert.AreEqual(appointment.Id, 1);
             Assert.AreEqual(appointment.Hospital.Id,hospital.Id);
             Assert.AreEqual(appointment.UserDoctor.Id, userDoctor.Id);
-            Assert.AreEqual(appointment.Priority, false);
 
 
         }

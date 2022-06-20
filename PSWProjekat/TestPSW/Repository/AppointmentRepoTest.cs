@@ -14,6 +14,7 @@ namespace TestPSW.Repository
         [SetUp]
         public void Setup()
         {
+           
         }
 
         [Test]
@@ -27,6 +28,7 @@ namespace TestPSW.Repository
 
             }
         }
+        [Test]
 
         public void Test2()
         {
@@ -34,6 +36,20 @@ namespace TestPSW.Repository
             {
                 Appointment appointment = unitOfWork.Appointments.Get(1);
                 Assert.NotNull(appointment);
+
+            }
+        }
+        [Test]
+
+        public void TestScheduleAppointment()
+        {
+            long doctorID = 4;
+            DateTime dateTime = new DateTime(2022, 3, 18);
+            DateTime dateTime2 = new DateTime(2022, 3, 19);
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                IEnumerable< Appointment> appointments = unitOfWork.Appointments.GetAppointmentDoctorAndDate(doctorID, dateTime, dateTime2);
+                Assert.IsTrue(appointments.Count() != 0);
 
             }
         }

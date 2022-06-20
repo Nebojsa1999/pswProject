@@ -19,13 +19,13 @@ namespace TestPSW.Controller
         ProjectConfiguration projConfig;
         public IPrescriptionService prescriptionService;
         ILogger<UserService> _logger;
-
+        ILogger<PrescriptionService> _prelogger;
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            prescriptionService = new PrescriptionService();
+            prescriptionService = new PrescriptionService(projConfig, _prelogger);
         }
 
         [Test]

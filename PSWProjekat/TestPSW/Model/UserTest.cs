@@ -33,7 +33,6 @@ namespace TestPSW.Model
             user.DateCreated = DateTime.MaxValue;
             user.DateUpdated = DateTime.MaxValue;
             user.Deleted = false;
-            user.Hospital = hospital;
             user.Enabled = false;
             user.Gender = PSWProjekat.Models.Enums.Gender.Male;
             user.PhoneNumber = "testPhoneNumber";
@@ -54,7 +53,6 @@ namespace TestPSW.Model
             Assert.AreEqual(user.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(user.DateUpdated, DateTime.MaxValue);
             Assert.AreEqual(user.Deleted, false);
-            Assert.AreEqual(user.Hospital.Id, hospital.Id);
             Assert.AreEqual(user.Enabled, false);
         }
     }

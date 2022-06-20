@@ -8,33 +8,38 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PSWProjekat.Configuration;
 using PSWProjekat.Controllers;
+using PSWProjekat.Models.DTO;
 using PSWProjekat.Service;
 using PSWProjekat.Service.Core;
 
 namespace TestPSW.Controller
 {
-    public class AppointmentControllerTest
+    class AuthControllerTest
     {
         public IUserService userService;
         ProjectConfiguration projConfig;
-        public IAppointmentService appointmentService;
         ILogger<UserService> _logger;
-        ILogger<AppointmentService> _applogger;
-
+        LoginDTO loginDTO;
+        string email = "test@gmail.com";
+        string password = "$2a$12$ovtPDLMjhabIrAOL1xk9fuKBNWBc.Iy821D7t9RTJCeDApQfFZ4Ze";
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            appointmentService = new AppointmentService(projConfig,_applogger);
+            loginDTO = new LoginDTO();
+            loginDTO.Email = email;
+            loginDTO.Password = password;
+            loginDTO.ClientID = "z68j5pm3s9";
+            loginDTO.ClientSecret = "r5h0du3dv1";
         }
 
         [Test]
         public void Test1()
         {
-            AppointmentController appointmentController = new AppointmentController(projConfig, userService, appointmentService);
-            IActionResult appointments = appointmentController.GetAll();
-            Assert.NotNull(appointments);
+            AuthController userController = new AuthController(projConfig, userService);
+            IActionResult users = userController.Login(loginDTO);
+            Assert.NotNull(users);
 
         }
     }

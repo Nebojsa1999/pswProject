@@ -17,21 +17,22 @@ namespace TestPSW.Controller
     {
         public IUserService userService;
         ProjectConfiguration projConfig;
-        public IProcrumentService procrumentService;
+        public IProcurementService procrumentService;
         ILogger<UserService> _logger;
+        ILogger<ProcurementService> _prologger;
 
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            procrumentService = new ProcrumentService();
+            procrumentService = new ProcurementService(projConfig, _prologger);
         }
 
         [Test]
         public void Test1()
         {
-            ProcrumentController procrumentController = new ProcrumentController(projConfig, userService, procrumentService);
+            ProcurementController procrumentController = new ProcurementController(projConfig, userService, procrumentService);
             IActionResult procruments = procrumentController.GetAll();
             Assert.NotNull(procruments);
 

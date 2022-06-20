@@ -19,13 +19,14 @@ namespace TestPSW.Controller
         ProjectConfiguration projConfig;
         public IFeedbackService feedbackService;
         ILogger<UserService> _logger;
+        ILogger<FeedbackService> _feedlogger;
 
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            feedbackService = new FeedbackService();
+            feedbackService = new FeedbackService(projConfig, _feedlogger);
         }
 
         [Test]

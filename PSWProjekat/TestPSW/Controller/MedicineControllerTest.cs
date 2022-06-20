@@ -19,13 +19,14 @@ namespace TestPSW.Controller
         ProjectConfiguration projConfig;
         public IMedicineService medicineService;
         ILogger<UserService> _logger;
+        ILogger<MedicineService> _medlogger;
 
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            medicineService = new MedicineService();
+            medicineService = new MedicineService(projConfig, _medlogger);
         }
 
         [Test]

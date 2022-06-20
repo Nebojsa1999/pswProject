@@ -32,7 +32,7 @@ namespace TestPSW.Model
             feedback.Comment = "testComment";
             feedback.Examination = examination;
             feedback.Grade = PSWProjekat.Models.Enums.GradeEnum.one;
-            feedback.UserPatient = userPatient;
+            feedback.Annonimus = false;
 
             Assert.AreEqual(feedback.Annonimus, false);
             Assert.AreEqual(feedback.DateCreated, DateTime.MaxValue);
@@ -42,7 +42,6 @@ namespace TestPSW.Model
             Assert.AreEqual(feedback.Comment, "testComment");
             Assert.AreEqual(feedback.Grade, PSWProjekat.Models.Enums.GradeEnum.one);
             Assert.AreEqual(feedback.Examination.Id, examination.Id);
-            Assert.AreEqual(feedback.UserPatient.Id, userPatient.Id);
 
         }
     }

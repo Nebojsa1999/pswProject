@@ -22,14 +22,12 @@ namespace TestPSW.Model
             Medicine medicine = new Medicine();
             Hospital hospital = new Hospital();
             hospital.Id = 1;
-            medicine.Amount = 1;
             medicine.countryProducer = "testCountry";
             medicine.DateCreated = DateTime.MaxValue;
             medicine.DateUpdated = DateTime.MaxValue;
             medicine.Deleted = false;
             medicine.Id = 1;
             medicine.Name = "testName";
-            medicine.Hospital = hospital;
             medicine.note = "testNote";
             medicine.Producer = "testProducer";
 
@@ -41,8 +39,7 @@ namespace TestPSW.Model
             Assert.AreEqual(medicine.Name, "testName");
             Assert.AreEqual(medicine.note, "testNote");
             Assert.AreEqual(medicine.Producer, "testProducer");
-            Assert.AreEqual(medicine.Amount, 1);
-            Assert.AreEqual(medicine.Hospital.Id, hospital.Id);
+           
 
         }
     }

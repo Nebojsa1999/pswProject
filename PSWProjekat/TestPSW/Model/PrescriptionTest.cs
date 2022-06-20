@@ -24,19 +24,19 @@ namespace TestPSW.Model
             User userpatient = new User();
             medicine.Id = 1;
             userpatient.Id = 1;
-            prescription.Medicine = medicine;
+            prescription.Doctor = "Ana";
             prescription.DateCreated = DateTime.MaxValue;
             prescription.DateUpdated = DateTime.MaxValue;
             prescription.Deleted = false;
             prescription.Id = 1;
-            prescription.PatientUser = userpatient;
+            prescription.PatientUser = "Nebojsa";
 
-            Assert.AreEqual(prescription.PatientUser.Id, userpatient.Id);
+            Assert.AreEqual(prescription.PatientUser, "Nebojsa");
             Assert.AreEqual(prescription.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(prescription.DateUpdated, DateTime.MaxValue);
             Assert.AreEqual(prescription.Deleted, false);
             Assert.AreEqual(prescription.Id, 1);
-            Assert.AreEqual(prescription.Medicine.Id, medicine.Id);
+            Assert.AreEqual(prescription.Doctor, "Ana");
         }
     }
 }

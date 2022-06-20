@@ -19,13 +19,14 @@ namespace TestPSW.Controller
         ProjectConfiguration projConfig;
         public IRefferalService refferalService;
         ILogger<UserService> _logger;
+        ILogger<RefferalService> _refferalLogger;
 
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            refferalService = new RefferalService();
+            refferalService = new RefferalService(projConfig, _refferalLogger);
         }
 
         [Test]

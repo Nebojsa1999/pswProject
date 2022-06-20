@@ -25,7 +25,6 @@ namespace TestPSW.Model
             refferal.DateCreated = DateTime.MaxValue;
             refferal.DateUpdated = DateTime.MaxValue;
             refferal.Deleted = false;
-            refferal.Doctor = doctor;
             refferal.Id = 1;
             refferal.Reason = "testReason";
             refferal.RefferalTime = DateTime.MaxValue;
@@ -33,7 +32,6 @@ namespace TestPSW.Model
             Assert.AreEqual(refferal.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(refferal.DateUpdated, DateTime.MaxValue);
             Assert.AreEqual(refferal.Deleted, false);
-            Assert.AreEqual(refferal.Doctor.Id, doctor.Id);
             Assert.AreEqual(refferal.Id, 1);
             Assert.AreEqual(refferal.Reason, "testReason");
             Assert.AreEqual(refferal.RefferalTime, DateTime.MaxValue);

@@ -23,7 +23,7 @@ namespace TestPSW.Repository
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
                 List<User> user = unitOfWork.Users.GetAll() as List<User>;
-                Assert.AreEqual(user.Count, 1);
+                Assert.AreEqual(user.Count, 5);
 
             }
         }

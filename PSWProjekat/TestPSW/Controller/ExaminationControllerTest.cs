@@ -19,20 +19,21 @@ namespace TestPSW.Controller
         ProjectConfiguration projConfig;
         public IExaminationService examinationService;
         ILogger<UserService> _logger;
+        ILogger<ExaminationService> _examlogger;
 
         [SetUp]
         public void Setup()
         {
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
-            examinationService = new ExaminationService();
+            examinationService = new ExaminationService(projConfig, _examlogger);
         }
 
         [Test]
         public void Test1()
         {
             ExaminationController examinationController = new ExaminationController(projConfig, userService, examinationService);
-            IActionResult examinations = examinationController.GetAll();
+            IActionResult examinations = examinationController.GetExaminationPastForUser(10002);
             Assert.NotNull(examinations);
 
         }
