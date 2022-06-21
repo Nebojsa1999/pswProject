@@ -29,6 +29,15 @@ namespace TestPSW.Service
             Assert.NotNull(feedbacks);
         }
 
-       
+        [Test]
+        public void UpdateAnnonimity()
+        {
+            FeedbackService feedbackService = new FeedbackService(projConfig, _logger);
+            Feedback feedback = feedbackService.Get(2);
+            feedback.Annonimus = false;
+            Assert.IsTrue( feedbackService.Update(2, feedback));
+        }
+
+
     }
 }

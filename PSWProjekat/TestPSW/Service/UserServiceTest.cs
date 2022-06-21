@@ -36,7 +36,7 @@ namespace TestPSW.Service
             UserService userService = new UserService(projConfig, _logger);
             User user = userService.Get(20002);
             user.PotentialSpammer = true;
-            _ = userService.Update(20002,user);
+            Assert.IsFalse( userService.Update(20002,user));
         }
 
     }

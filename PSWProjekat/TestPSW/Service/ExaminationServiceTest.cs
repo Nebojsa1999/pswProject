@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PSWProjekat.Configuration;
 using PSWProjekat.Models;
+using PSWProjekat.Models.DTO;
 using PSWProjekat.Service;
 
 namespace TestPSW.Service
@@ -15,9 +16,16 @@ namespace TestPSW.Service
     {
         ILogger<ExaminationService> _logger;
         ProjectConfiguration projConfig;
+        CancelDTO cancelDTO = new CancelDTO();
+        ExaminationSpecialistDTO examinationSpecialistDTO = new ExaminationSpecialistDTO();
         [SetUp]
         public void Setup()
         {
+            examinationSpecialistDTO.appointmentId = 13;
+            examinationSpecialistDTO.reason = "Bol u glavi";
+            examinationSpecialistDTO.userId = 20002;
+            cancelDTO.id = 7;
+            cancelDTO.userId = 20002;
         }
 
         [Test]
@@ -29,10 +37,18 @@ namespace TestPSW.Service
             Assert.AreEqual(examinations.Count, 1);
         }
 
-        public void Test2()
+        [Test]
+        public void CreateExaminationSpecialistDateNowWhichExists()
         {
             ExaminationService examinationService = new ExaminationService(projConfig, _logger);
-            
+            Assert.IsTrue(examinationService.ScheduleExaminationSpecialist(examinationSpecialistDTO) == null);
+        }
+
+        [Test]
+        public void CancelExamination48h()
+        {
+            ExaminationService examinationService = new ExaminationService(projConfig, _logger);
+            Assert.IsFalse(examinationService.Cancel(cancelDTO));
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PSWProjekat.Configuration;
 using PSWProjekat.Models;
+using PSWProjekat.Repository;
 using PSWProjekat.Service;
 
 namespace TestPSW.Service
@@ -15,10 +16,17 @@ namespace TestPSW.Service
     {
 
         ILogger<AppointmentService> _logger;
+    
+
         ProjectConfiguration projConfig;
+       
+        Appointment entity = new Appointment();
+
         [SetUp]
         public void Setup()
         {
+   
+           
         }
 
         [Test]
@@ -29,6 +37,8 @@ namespace TestPSW.Service
             List<Appointment> appointments = appointmentService.getAll() as List<Appointment>;
             Assert.NotNull(appointments);
         }
+
+       
 
     }
 }

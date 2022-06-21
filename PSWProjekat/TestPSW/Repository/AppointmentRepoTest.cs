@@ -11,10 +11,16 @@ namespace TestPSW.Repository
 {
     public class AppointmentRepoTest
     {
+        Appointment entity = new Appointment();
         [SetUp]
         public void Setup()
         {
-           
+            entity.AppointmentDate = DateTime.Now;
+            entity.AppointmentTime = new TimeSpan(10, 0, 0);
+            entity.DateCreated = DateTime.Now;
+            entity.DateUpdated = DateTime.Now;
+            entity.Deleted = false;
+            
         }
 
         [Test]
@@ -91,6 +97,42 @@ namespace TestPSW.Repository
             {
                 IEnumerable<Appointment> appointments = unitOfWork.Appointments.GetAppointmentSpecialist();
                 Assert.IsTrue(appointments.Count() != 0);
+
+            }
+        }
+
+        [Test]
+
+        public void CreateAppointment()
+        {
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                Hospital hospital = unitOfWork.Hospitals.Get(1);
+                User doctor = unitOfWork.Users.Get(4);
+                entity.Hospital = hospital;
+                entity.UserDoctor = doctor;
+                unitOfWork.Appointments.Add(entity);
+                _ = unitOfWork.Complete();
+                Assert.IsTrue(entity != null);
+
+            }
+        }
+
+        [Test]
+
+        public void CreateAppointmentSpecialist()
+        {
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                Hospital hospital = unitOfWork.Hospitals.Get(1);
+                User doctor = unitOfWork.Users.Get(3);
+                entity.Hospital = hospital;
+                entity.UserDoctor = doctor;
+                unitOfWork.Appointments.Add(entity);
+                _ = unitOfWork.Complete();
+                Assert.IsTrue(entity != null);
 
             }
         }
