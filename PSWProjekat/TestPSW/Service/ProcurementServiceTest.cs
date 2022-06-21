@@ -26,14 +26,9 @@ namespace TestPSW.Service
 
             ProcurementService procrumentService = new ProcurementService(projConfig,_logger);
             List<Procurement> procurements = procrumentService.getAll() as List<Procurement>;
-            Assert.AreEqual(procurements.Count, 1);
+            Assert.AreEqual(procurements.Count, 2);
         }
 
-        public void Test2()
-        {
-            ProcurementService procrumentService = new ProcurementService(projConfig, _logger);
-            Procurement procurement = procrumentService.Get(1);
-            Assert.NotNull(procurement);
-        }
+      
     }
 }

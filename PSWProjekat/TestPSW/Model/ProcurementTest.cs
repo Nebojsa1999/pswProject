@@ -30,7 +30,9 @@ namespace TestPSW.Model
             procurement.Deleted = false;
             procurement.Id = 1;
             procurement.Pharmacy = pharmacy;
+            procurement.Amount = 10;
 
+            Assert.AreEqual(procurement.Amount, 10);
             Assert.AreEqual(procurement.Medicine.Id, medicine.Id);
             Assert.AreEqual(procurement.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(procurement.DateUpdated, DateTime.MaxValue);

@@ -11,9 +11,11 @@ namespace TestPSW.Repository
 {
     public class UserRepoTest
     {
+        string email;
         [SetUp]
         public void Setup()
         {
+            email = "nebojsa@gmail.com";
         }
 
         [Test]
@@ -22,20 +24,65 @@ namespace TestPSW.Repository
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                List<User> user = unitOfWork.Users.GetAll() as List<User>;
-                Assert.AreEqual(user.Count, 5);
+                List<User> user = unitOfWork.Users.GetBlockedUsers() as List<User>;
+                Assert.IsTrue(user.Count > 0);
 
             }
         }
 
+
+        [Test]
         public void Test2()
         {
+
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                User user = unitOfWork.Users.Get(1);
+                List<User> user = unitOfWork.Users.GetPotentialSpammer() as List<User>;
+                Assert.IsTrue(user.Count > 0);
+
+            }
+        }
+
+
+        [Test]
+        public void Test3()
+        {
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                List<User> user = unitOfWork.Users.GetDoctor() as List<User>;
+                Assert.IsTrue(user.Count > 0);
+
+            }
+        }
+
+
+        [Test]
+        public void Test4()
+        {
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                List<User> user = unitOfWork.Users.GetPatient() as List<User>;
+                Assert.IsTrue(user.Count > 1);
+
+            }
+        }
+
+
+        [Test]
+        public void Test5()
+        {
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+
+                User user = unitOfWork.Users.GetUserWithEmail(email);
                 Assert.NotNull(user);
 
             }
         }
+
+
     }
 }

@@ -31,13 +31,13 @@ namespace TestPSW.Controller
             projConfig = new ProjectConfiguration();
             userService = new UserService(projConfig, _logger);
             examinationService = new ExaminationService(projConfig, _examlogger);
-            examinationDTO.appointmentId = 2;
-            examinationDTO.userId = 10002;
-            examinationSpecialistDTO.appointmentId = 10;
-            examinationSpecialistDTO.userId = 10002;
+            examinationDTO.appointmentId = 1;
+            examinationDTO.userId = 20002;
+            examinationSpecialistDTO.appointmentId = 11;
+            examinationSpecialistDTO.userId = 20002;
             examinationSpecialistDTO.reason = "Bol u glavi";
-            cancelDTO.id = 3;
-            cancelDTO.userId = 10002;
+            cancelDTO.id = 6;
+            cancelDTO.userId = 20002;
         }
 
         [Test]

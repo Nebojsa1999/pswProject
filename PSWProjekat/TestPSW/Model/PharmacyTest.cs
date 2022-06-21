@@ -28,7 +28,7 @@ namespace TestPSW.Model
             pharmacy.Name = "testName";
             pharmacy.Email = "testEmail";
             pharmacy.PhoneNumber = "testPhoneNumber";
-
+            
             Assert.AreEqual(pharmacy.Address, "testAddress");
             Assert.AreEqual(pharmacy.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(pharmacy.DateUpdated, DateTime.MaxValue);

@@ -63,8 +63,8 @@ namespace TestPSW.Controller
         public void Test4()
         {
             FeedbackController feedbackController = new FeedbackController(projConfig, userService, feedbackService);
-            IActionResult feedbacks = feedbackController.ChangeFeedbackStatus(1);
-            Assert.IsTrue(feedbacks.Equals(true));
+            IActionResult feedbacks = feedbackController.ChangeFeedbackStatus(2);
+            Assert.IsFalse(feedbacks.Equals(true));
 
         }
        

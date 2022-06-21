@@ -20,10 +20,7 @@ namespace TestPSW.Model
         {
 
             Prescription prescription = new Prescription();
-            Medicine medicine = new Medicine();
-            User userpatient = new User();
-            medicine.Id = 1;
-            userpatient.Id = 1;
+      
             prescription.Doctor = "Ana";
             prescription.DateCreated = DateTime.MaxValue;
             prescription.DateUpdated = DateTime.MaxValue;

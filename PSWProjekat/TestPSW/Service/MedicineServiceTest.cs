@@ -27,14 +27,9 @@ namespace TestPSW.Service
 
             MedicineService medicineService = new MedicineService(projConfig, _logger);
             List<Medicine> medicines = medicineService.getAll() as List<Medicine>;
-            Assert.AreEqual(medicines.Count, 1);
+            Assert.AreEqual(medicines.Count, 2);
         }
 
-        public void Test2()
-        {
-            MedicineService medicineService = new MedicineService(projConfig, _logger);
-            Medicine medicine = medicineService.Get(1);
-            Assert.NotNull(medicine);
-        }
+      
     }
 }

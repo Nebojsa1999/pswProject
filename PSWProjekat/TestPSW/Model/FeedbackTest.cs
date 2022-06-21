@@ -33,11 +33,12 @@ namespace TestPSW.Model
             feedback.Examination = examination;
             feedback.Grade = PSWProjekat.Models.Enums.GradeEnum.one;
             feedback.Annonimus = false;
-
+            feedback.IsShown = true;
             Assert.AreEqual(feedback.Annonimus, false);
             Assert.AreEqual(feedback.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(feedback.DateUpdated, DateTime.MaxValue);
             Assert.AreEqual(feedback.Deleted, false);
+            Assert.AreEqual(feedback.IsShown, true);
             Assert.AreEqual(feedback.Id, 1);
             Assert.AreEqual(feedback.Comment, "testComment");
             Assert.AreEqual(feedback.Grade, PSWProjekat.Models.Enums.GradeEnum.one);

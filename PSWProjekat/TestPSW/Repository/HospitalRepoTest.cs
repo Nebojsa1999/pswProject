@@ -31,14 +31,6 @@ namespace TestPSW.Repository
            
         }
 
-        public void Test2()
-        {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
-            {
-                Hospital hospital = unitOfWork.Hospitals.Get(1);
-
-                Assert.NotNull(hospital);
-            }
-        }
+      
     }
 }

@@ -22,20 +22,12 @@ namespace TestPSW.Repository
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                List<Procurement> procurement = unitOfWork.Procruments.GetAll() as List<Procurement>;
-                Assert.AreEqual(procurement.Count, 1);
-
-            }
-        }
-
-        public void Test2()
-        {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
-            {
-                Procurement procurement = unitOfWork.Procruments.Get(1);
+                Procurement procurement = unitOfWork.Procruments.GetProcurementBasedOnMedicine(1);
                 Assert.NotNull(procurement);
 
             }
         }
+
+     
     }
 }

@@ -27,7 +27,7 @@ namespace TestPSW.Controller
             userService = new UserService(projConfig,_logger);
             registerDTO.Address = "Dusana petrovica 7";
             registerDTO.Email = "test@gmail.com";
-            registerDTO.Gender = "male";
+            registerDTO.Gender = "0";
             registerDTO.Name = "Marjan";
             registerDTO.Password = "123";
             registerDTO.PhoneNumber = "0631221";
@@ -87,7 +87,7 @@ namespace TestPSW.Controller
         public void Test7()
         {
             UserController userController = new UserController(projConfig, userService);
-            IActionResult users = userController.Block(10002);
+            IActionResult users = userController.Block(20002);
             Assert.NotNull(users);
 
         }
@@ -95,7 +95,7 @@ namespace TestPSW.Controller
         public void Test8()
         {
             UserController userController = new UserController(projConfig, userService);
-            IActionResult users = userController.Unblock(10002);
+            IActionResult users = userController.Unblock(20002);
             Assert.NotNull(users);
 
         }
@@ -103,7 +103,7 @@ namespace TestPSW.Controller
         public void Test9()
         {
             UserController userController = new UserController(projConfig, userService);
-            IActionResult users = userController.RemoveFromSpammerList(10002);
+            IActionResult users = userController.RemoveFromSpammerList(20002);
             Assert.NotNull(users);
 
         }

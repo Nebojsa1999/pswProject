@@ -23,19 +23,11 @@ namespace TestPSW.Repository
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
                 List<Refferal> refferal = unitOfWork.Refferals.GetAll() as List<Refferal>;
-                Assert.AreEqual(refferal.Count, 1);
+                Assert.IsTrue(refferal.Count >= 1);
 
             }
         }
 
-        public void Test2()
-        {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
-            {
-                Refferal refferal = unitOfWork.Refferals.Get(1);
-                Assert.NotNull(refferal);
-
-            }
-        }
+     
     }
 }

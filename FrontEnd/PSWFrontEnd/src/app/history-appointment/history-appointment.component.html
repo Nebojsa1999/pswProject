@@ -1,0 +1,76 @@
+<body>
+<ul>
+  <li><a href="/patient">Home</a></li>
+  <li><a href="/appointment">Schedule an appointment</a></li>
+  <li > <a href="/history" > Your appointements   </a></li>
+  <li><a href="/home">Log out</a></li>
+
+
+</ul>
+<button (click)="div2Function()">Future</button>
+<button (click)="div1Function()">Past</button>
+<div class="page">
+  <div *ngIf = "div2"  >
+    <h2>Future appointments:</h2>
+    <mat-table mat-table [dataSource]="data">
+          
+          <ng-container matColumnDef="AppointmentTimeStart">
+            <th mat-header-cell *matHeaderCellDef> Appointment Time  </th>
+            <td mat-cell *matCellDef="let examination"> {{examination.appointment.appointmentTime.hours}}:{{examination.appointment.appointmentTime.minutes}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="AppointmentTimeEnd">
+            <th mat-header-cell *matHeaderCellDef> Appointment Date </th>
+            <td mat-cell *matCellDef="let examination"> {{examination.appointment.appointmentDate}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Hospital">
+            <th mat-header-cell *matHeaderCellDef> Hospital </th>
+            <td mat-cell *matCellDef="let examination"> {{examination.appointment.hospital.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="UserDoctor">
+            <th mat-header-cell *matHeaderCellDef> UserDoctor </th>
+            <td mat-cell *matCellDef="let examination"> {{examination.appointment.userDoctor.name}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <ng-container matColumnDef="Cancel">
+            <th mat-header-cell *matHeaderCellDef> Cancel </th>
+            <td mat-cell *matCellDef="let appointment"> <button (click)="Cancel(appointment.id)">Cancel</button> </td>
+          </ng-container>
+    </mat-table>
+  </div>
+    <div *ngIf="div1">
+    <h2>Past appointments:</h2>
+    <mat-table mat-table [dataSource]="dataPast">
+          
+      <ng-container matColumnDef="AppointmentTimeStart">
+        <th mat-header-cell *matHeaderCellDef> Appointment Time  </th>
+        <td mat-cell *matCellDef="let examination"> {{examination.appointment.appointmentTime.hours}}:{{examination.appointment.appointmentTime.minutes}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="AppointmentTimeEnd">
+        <th mat-header-cell *matHeaderCellDef> Appointment Date </th>
+        <td mat-cell *matCellDef="let examination"> {{examination.appointment.appointmentDate}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Hospital">
+        <th mat-header-cell *matHeaderCellDef> Hospital </th>
+        <td mat-cell *matCellDef="let examination"> {{examination.appointment.hospital.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="UserDoctor">
+        <th mat-header-cell *matHeaderCellDef> UserDoctor </th>
+        <td mat-cell *matCellDef="let examination"> {{examination.appointment.userDoctor.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Feedback">
+        <th mat-header-cell *matHeaderCellDef> Feedback </th>
+        <td mat-cell *matCellDef="let examination"><button><a [routerLink]="['/feedback']"  [queryParams]="{id: examination.id}" >Feedback</a></button></td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsPast"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsPast;"></tr>
+</mat-table>
+</div>
+</div>
+</body>

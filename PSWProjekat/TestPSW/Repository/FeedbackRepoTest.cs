@@ -22,17 +22,28 @@ namespace TestPSW.Repository
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                List<Feedback> feedback = unitOfWork.Feedbacks.GetAll() as List<Feedback>;
-                Assert.AreEqual(feedback.Count, 1);
+                List<Feedback> feedback = unitOfWork.Feedbacks.GetAllApproved() as List<Feedback>;
+                Assert.IsTrue(feedback.Count > 0);
 
             }
         }
-
+        [Test]
         public void Test2()
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                Feedback feedback = unitOfWork.Feedbacks.Get(1);
+                List<Feedback> feedback = unitOfWork.Feedbacks.GetAllFeedbacks() as List<Feedback>;
+                Assert.NotNull(feedback);
+
+            }
+        }
+
+        [Test]
+        public void Test3()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                Feedback feedback = unitOfWork.Feedbacks.GetFeedBackBasedOnExam(3);
                 Assert.NotNull(feedback);
 
             }

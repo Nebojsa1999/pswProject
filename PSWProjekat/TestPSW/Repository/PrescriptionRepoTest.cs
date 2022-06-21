@@ -23,19 +23,10 @@ namespace TestPSW.Repository
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
                 List<Prescription> prescription = unitOfWork.Prescriptions.GetAll() as List<Prescription>;
-                Assert.AreEqual(prescription.Count, 1);
+                Assert.IsTrue(prescription.Count >= 1);
 
             }
         }
 
-        public void Test2()
-        {
-            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
-            {
-                Prescription prescription = unitOfWork.Prescriptions.Get(1);
-                Assert.NotNull(prescription);
-
-            }
-        }
     }
 }

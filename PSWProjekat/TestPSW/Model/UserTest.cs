@@ -37,7 +37,12 @@ namespace TestPSW.Model
             user.Gender = PSWProjekat.Models.Enums.Gender.Male;
             user.PhoneNumber = "testPhoneNumber";
             user.Address = "testAddress";
-          
+            user.CancelCount = 4;
+            user.LastDateOfCancel = new DateTime(2020, 1, 1);
+            user.PotentialSpammer = true;
+            Assert.AreEqual(user.CancelCount, 4);
+            Assert.AreEqual(user.LastDateOfCancel, new DateTime(2020, 1, 1));
+            Assert.AreEqual(user.PotentialSpammer, true);
             Assert.AreEqual(user.Email, "test@gmail.com");
             Assert.AreEqual(user.Username, "test");
             Assert.AreEqual(user.Name, "testName");

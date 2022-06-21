@@ -26,14 +26,9 @@ namespace TestPSW.Service
 
             RefferalService refferalService = new RefferalService(projConfig, _logger);
             List<Refferal> refferals = refferalService.getAll() as List<Refferal>;
-            Assert.AreEqual(refferals.Count, 1);
+            Assert.NotNull(refferals);
         }
 
-        public void Test2()
-        {
-            RefferalService refferalService = new RefferalService(projConfig, _logger);
-            Refferal refferal = refferalService.Get(1);
-            Assert.NotNull(refferal);
-        }
+       
     }
 }

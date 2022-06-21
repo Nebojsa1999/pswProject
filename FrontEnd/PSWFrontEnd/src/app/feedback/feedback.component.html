@@ -1,0 +1,49 @@
+<body>
+<ul>
+  <li><a href="/patient">Home</a></li>
+  <li><a href="/appointment">Schedule an appointment</a></li>
+  <li > <a href="/history" > Your appointements   </a></li>
+  <li><a href="/home">Log out</a></li>
+
+
+</ul>
+<div class="page">
+
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <h2>Feedback</h2>
+            
+          <mat-form-field class="full-width-input">
+            <mat-select formControlName="grade">
+                <mat-option value=1>One</mat-option>
+                <mat-option value=2 >Two</mat-option>
+                <mat-option value=3>Three</mat-option>
+                <mat-option value=4>Four</mat-option>
+                <mat-option value=5>Five</mat-option>
+
+              </mat-select>
+            <mat-error>
+             Please select a grade
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="full-width-input">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."  formControlName="comment" required></textarea>
+            <mat-error>
+              Please fill out this field
+            </mat-error>
+          </mat-form-field>
+          <mat-checkbox (change)="change()" value="annonymus" formControlName="annonymus" >
+            Dont display name   
+          </mat-checkbox >
+          <br>
+          <br>
+          <button mat-raised-button color="primary">Submit</button>
+          
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</body>

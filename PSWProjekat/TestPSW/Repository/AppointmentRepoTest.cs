@@ -24,7 +24,7 @@ namespace TestPSW.Repository
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
                 List<Appointment> appointment = unitOfWork.Appointments.GetAll() as List<Appointment>;
-                Assert.AreEqual(appointment.Count, 1);
+                Assert.NotZero(appointment.Count());
 
             }
         }
@@ -41,14 +41,55 @@ namespace TestPSW.Repository
         }
         [Test]
 
-        public void TestScheduleAppointment()
+        public void GetAppointmentDoctorAndDate()
         {
             long doctorID = 4;
-            DateTime dateTime = new DateTime(2022, 3, 18);
-            DateTime dateTime2 = new DateTime(2022, 3, 19);
+            DateTime dateTime = new DateTime(2022, 6, 18);
+            DateTime dateTime2 = new DateTime(2022, 7, 19);
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
                 IEnumerable< Appointment> appointments = unitOfWork.Appointments.GetAppointmentDoctorAndDate(doctorID, dateTime, dateTime2);
+                Assert.IsTrue(appointments.Count() != 0);
+
+            }
+        }
+
+        [Test]
+
+        public void GetAppointmentDate()
+        {
+            DateTime dateTime = new DateTime(2022, 6, 18);
+            DateTime dateTime2 = new DateTime(2022, 7, 19);
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                IEnumerable<Appointment> appointments = unitOfWork.Appointments.GetAppointmentDate( dateTime, dateTime2);
+                Assert.IsTrue(appointments.Count() != 0);
+
+            }
+        }
+        [Test]
+
+        public void GetAppointmentDoctor()
+        {
+            long doctorId = 4;
+            DateTime dateTime = new DateTime(2022, 6, 27);
+            DateTime dateTime2 = new DateTime(2022, 6, 29);
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                IEnumerable<Appointment> appointments = unitOfWork.Appointments.GetAppointmentDoctor(doctorId,dateTime, dateTime2);
+                Assert.IsTrue(appointments.Count() != 0);
+
+            }
+        }
+
+        [Test]
+
+        public void GetAppointmentSpecialist()
+        {
+         
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                IEnumerable<Appointment> appointments = unitOfWork.Appointments.GetAppointmentSpecialist();
                 Assert.IsTrue(appointments.Count() != 0);
 
             }

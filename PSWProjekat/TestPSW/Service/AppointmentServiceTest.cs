@@ -27,14 +27,8 @@ namespace TestPSW.Service
 
             AppointmentService appointmentService = new AppointmentService(projConfig, _logger);
             List<Appointment> appointments = appointmentService.getAll() as List<Appointment>;
-            Assert.AreEqual(appointments.Count, 1);
-        }
-
-        public void Test2()
-        {
-            AppointmentService appointmentService = new AppointmentService(projConfig, _logger);
-            Appointment appointments = appointmentService.Get(1);
             Assert.NotNull(appointments);
         }
+
     }
 }

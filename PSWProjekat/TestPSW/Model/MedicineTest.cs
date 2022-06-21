@@ -30,7 +30,7 @@ namespace TestPSW.Model
             medicine.Name = "testName";
             medicine.note = "testNote";
             medicine.Producer = "testProducer";
-
+            
             Assert.AreEqual(medicine.countryProducer, "testCountry");
             Assert.AreEqual(medicine.DateCreated, DateTime.MaxValue);
             Assert.AreEqual(medicine.DateUpdated, DateTime.MaxValue);

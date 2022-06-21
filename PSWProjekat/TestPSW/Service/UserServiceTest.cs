@@ -27,14 +27,17 @@ namespace TestPSW.Service
 
             UserService userService = new UserService(projConfig,_logger);
             List<User> users = userService.GetAllUsers() as List<User>;
-            Assert.AreEqual(users.Count, 1);
+            Assert.NotNull(users);
         }
 
-        public void Test2()
+        [Test]
+        public void UpdateSpammer()
         {
             UserService userService = new UserService(projConfig, _logger);
-            User user = userService.Get(1);
-            Assert.NotNull(user);
+            User user = userService.Get(20002);
+            user.PotentialSpammer = true;
+            _ = userService.Update(20002,user);
         }
+
     }
 }

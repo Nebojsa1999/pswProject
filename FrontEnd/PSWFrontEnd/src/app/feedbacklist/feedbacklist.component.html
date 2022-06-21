@@ -1,0 +1,60 @@
+<body>
+        <ul>
+            <li><a href="/users">Home</a></li>
+            <li><a href="/feedBackLists">Approve feedbacks</a></li>
+            <li><a href="/home">Log out</a></li>
+          
+          
+          </ul>
+<h1>Feedbacks:</h1>
+<div class="page">
+
+<mat-table mat-table [dataSource]="feedbacks">
+
+  <ng-container matColumnDef="User">
+    <th mat-header-cell *matHeaderCellDef> Name  </th>
+    <td mat-cell *matCellDef="let feedback"> {{feedback.examination.user.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Comment">
+    <th mat-header-cell *matHeaderCellDef> Comment </th>
+    <td mat-cell *matCellDef="let feedback"> {{feedback.comment}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Grade">
+    <th mat-header-cell *matHeaderCellDef> Grade </th>
+    <td mat-cell *matCellDef="let feedback">
+      <p *ngIf="feedback.grade == 0  ; else one"> Lose(1)</p>
+      <ng-template #one>
+        <p *ngIf="feedback.grade == 1;else two">Zadovoljavajuce(2)</p>
+     </ng-template> 
+     <ng-template #two>
+      <p *ngIf="feedback.grade == 2;else three">Dobro(3)</p>
+   </ng-template> 
+   <ng-template #three>
+    <p *ngIf="feedback.grade == 3;else four">Veoma dobro(4)</p>
+ </ng-template> 
+ <ng-template #four>
+  <p>Super(5)</p>
+</ng-template> 
+    </td>
+</ng-container>
+
+  <ng-container matColumnDef="Doctor">
+    <th mat-header-cell *matHeaderCellDef> Doctor </th>
+    <td mat-cell *matCellDef="let feedback"> {{feedback.examination.appointment.userDoctor.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Shown">
+    <th mat-header-cell *matHeaderCellDef> Shown </th>
+    <td mat-cell *matCellDef="let feedback"> {{feedback.isShown}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Change">
+    <th mat-header-cell *matHeaderCellDef> Change </th>
+    <td mat-cell *matCellDef="let feedback"> <button (click)="Change(feedback.id)">Change</button> </td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</mat-table>
+</div>
+</body>

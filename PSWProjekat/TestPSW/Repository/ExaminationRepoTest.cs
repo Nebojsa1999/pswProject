@@ -22,17 +22,54 @@ namespace TestPSW.Repository
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                List<Examination> examination = unitOfWork.Examinations.GetAll() as List<Examination>;
-                Assert.AreEqual(examination.Count, 1);
+                List<Examination> examination = unitOfWork.Examinations.GetExaminationsFromDoctor(4) as List<Examination>;
+                Assert.IsTrue(examination.Count() > 1);
 
             }
         }
+        [Test]
 
         public void Test2()
         {
             using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
             {
-                Examination examination = unitOfWork.Examinations.Get(1);
+                List<Examination> examination = unitOfWork.Examinations.GetAllExaminationPresentForUser(10002) as List<Examination>;
+                Assert.NotNull(examination);
+
+            }
+        }
+
+        [Test]
+
+        public void Test3()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                List<Examination> examination = unitOfWork.Examinations.GetAllExaminationsPastForUser(10002) as List<Examination>;
+                Assert.NotNull(examination);
+
+            }
+        }
+
+        [Test]
+
+        public void Test4()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                Examination examination = unitOfWork.Examinations.GetExaminationBasedOnAppID(10);
+                Assert.NotNull(examination);
+
+            }
+        }
+
+        [Test]
+
+        public void Test5()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                Examination examination = unitOfWork.Examinations.GetExamination(2);
                 Assert.NotNull(examination);
 
             }

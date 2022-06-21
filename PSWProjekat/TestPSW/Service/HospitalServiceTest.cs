@@ -26,14 +26,9 @@ namespace TestPSW.Service
 
             HospitalService hospitalService = new HospitalService(projConfig, _logger);
             List<Hospital> hospitals = hospitalService.getAll() as List<Hospital>;
-            Assert.AreEqual(hospitals.Count, 1);
+            Assert.NotNull(hospitals);
         }
 
-        public void Test2()
-        {
-            HospitalService hospitalService = new HospitalService(projConfig, _logger);
-            Hospital hospital = hospitalService.Get(1);
-            Assert.NotNull(hospital);
-        }
+      
     }
 }
