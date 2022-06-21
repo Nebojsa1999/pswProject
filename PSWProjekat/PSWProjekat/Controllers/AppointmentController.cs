@@ -39,21 +39,29 @@ namespace PSWProjekat.Controllers
                 if(appointment.Priority == "0")
                 {
                     IEnumerable<Appointment> appointmentListDoctor = appointmentService.GetAppointmentDoctor(appointment);
+                    if(appointmentListDoctor.Count() == 0)
+                    {
+                        return BadRequest("Sorry couldn't find you a term!");
+
+                    }
                     return Ok(appointmentListDoctor);
 
                 }
 
-                else if(appointment.Priority == "1")
+                else
                 { 
                     IEnumerable<Appointment> appointmentListDate = appointmentService.GetAppointmentDate(appointment);
+                    if (appointmentListDate.Count() == 0)
+                    {
+                        return BadRequest("Sorry couldn't find you a term!");
+
+                    }
                     return Ok(appointmentListDate);
 
                 }
-
-                else
-                {
-                    return BadRequest("Sorry couldn't find you a term!");
-                }
+                
+             
+                
             }
             else
             {

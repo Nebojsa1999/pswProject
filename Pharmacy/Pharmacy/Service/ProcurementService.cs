@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Pharmacy.Configuration;
 using Pharmacy.Models;
+using Pharmacy.Repository;
 using Pharmacy.Service.Core;
 
 namespace Pharmacy.Service
@@ -17,6 +18,14 @@ namespace Pharmacy.Service
         {
             _logger = logger;
             _configuration = configuration;
+        }
+
+        public IEnumerable<Procurement> getAll()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork(new ProjectContext()))
+            {
+                return unitOfWork.Procurement.GetAll();
+            }
         }
     }
 }

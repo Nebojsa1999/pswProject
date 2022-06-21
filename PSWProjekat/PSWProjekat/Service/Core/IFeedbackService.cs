@@ -7,7 +7,7 @@ using PSWProjekat.Models.DTO;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IFeedbackService
+    public interface IFeedbackService : IBaseService<Feedback>
     {
         public IEnumerable<Feedback> getAll();
         public Feedback GiveFeedBack(FeedBackDTO entity);

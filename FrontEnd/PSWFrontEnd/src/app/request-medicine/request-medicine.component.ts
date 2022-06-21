@@ -1,34 +1,35 @@
+import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-doctor-page',
-  templateUrl: './doctor-page.component.html',
-  styleUrls: ['./doctor-page.component.scss']
+  selector: 'app-request-medicine',
+  templateUrl: './request-medicine.component.html',
+  styleUrls: ['./request-medicine.component.scss']
 })
-export class DoctorPageComponent implements OnInit {
+export class RequestMedicineComponent implements OnInit {
 user:any
-appointmentSpecialists:any
-patients:any
+medicines:any
 form: FormGroup;
+newAmount:any
+errorMessage:any
 public loginInvalid = false;
 private formSubmitAttempt = false;
-errorMessage:any
   constructor(
     private router:Router,
-    private apiService:ApiService,
+    private api:ApiService,
     private fb: FormBuilder,
 
   ) { 
     this.form = this.fb.group({
-      appointment: ['', Validators.required],
-      patient: ['', Validators.required],
-      reason: ['', Validators.required]
+      medicine: ['', Validators.required],
+      amount: ['',[Validators.min(1), Validators.max(50)]],
 
       
     });
+
   }
 
   ngOnInit(): void {
@@ -44,13 +45,9 @@ errorMessage:any
       this.router.navigate(['/home'], {queryParams: { permission: 'false' } });
       return;
     }
-    this.apiService.getSpecialists().subscribe((response:any)=>{
-      this.appointmentSpecialists = response
-    })
-    this.apiService.getExaminationsFromDoctor({
-      doctorId : this.user.id
-    }).subscribe((response:any)=>{
-      this.patients = response
+    this.api.getMedicinePharmacy().subscribe((response:any)=>
+    {
+      this.medicines=response
     })
   }
 
@@ -59,21 +56,22 @@ errorMessage:any
     this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
-        const appointment = this.form.get('appointment')?.value;
-        const patient = this.form.get('patient')?.value;
-        const reason = this.form.get('reason')?.value;
+        const medicine = this.form.get('medicine')?.value;
+        const amount = this.form.get('amount')?.value;
 
       
-        this.apiService.scheduleExaminationSpecialist({
-          userId: patient,
-          appointmentId: appointment,
-          reason:reason
+        this.api.getMedicineGRPC({
+          id: medicine,
+          amount:amount,
           
-        }).subscribe((response : any) => {          
-         },(error:any) => {
+          
+        }).subscribe((response : any) => {                    
+          this.newAmount = response
+        },(error:any) => {
           console.log(error)
           this.errorMessage = error.error;
         });
+        
         
 
       }
@@ -87,7 +85,5 @@ errorMessage:any
       this.formSubmitAttempt = true;
     }
   }
-
-
 
 }

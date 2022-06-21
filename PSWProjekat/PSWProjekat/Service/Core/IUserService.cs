@@ -6,7 +6,7 @@ using PSWProjekat.Models;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IUserService
+    public interface IUserService : IBaseService<User>
     {
         User GetUserWithEmail(string email);
         User Add(User entity);

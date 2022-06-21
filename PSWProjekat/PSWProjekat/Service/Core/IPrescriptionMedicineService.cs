@@ -7,7 +7,7 @@ using PSWProjekat.Models.DTO;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IPrescriptionMedicineService 
+    public interface IPrescriptionMedicineService : IBaseService<PrescriptionMedicine>
     {
         public  Task<PrescriptionMedicine> MakePrescription(PrescriptionDTO entity);
     }

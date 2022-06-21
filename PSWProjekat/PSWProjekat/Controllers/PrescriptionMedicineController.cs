@@ -27,8 +27,16 @@ namespace PSWProjekat.Controllers
 
         public IActionResult MakePrescription(PrescriptionDTO prescriptionDTO)
         {
+            var bla = prescriptionmedicineService.MakePrescription(prescriptionDTO);
+            if (bla.IsCompleted == true)
+            {
+                return BadRequest("We dont have that much medicine in storage, choose another amount!");
+            }
+            else
+            {
+                return Ok(prescriptionmedicineService.MakePrescription(prescriptionDTO));
 
-            return Ok(prescriptionmedicineService.MakePrescription(prescriptionDTO));
+            }
         }
 
     }

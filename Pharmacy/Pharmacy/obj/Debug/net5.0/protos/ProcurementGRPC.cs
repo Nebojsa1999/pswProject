@@ -23,15 +23,15 @@ public static partial class ProcurementGRPCReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Chxwcm90b3MvUHJvY3VyZW1lbnRHUlBDLnByb3RvIjAKElByb2N1cmVtZW50",
-          "UmVxdWVzdBIKCgJpZBgBIAEoAxIOCgZhbW91bnQYAiABKAMiJQoTUHJvY3Vy",
-          "ZW1lbnRSZXNwb25zZRIOCgZhbW91bnQYASABKAMyUAoPUHJvY3VyZW1lbnRH",
-          "UlBDEj0KDkdldFByb2N1cmVtZW50EhMuUHJvY3VyZW1lbnRSZXF1ZXN0GhQu",
-          "UHJvY3VyZW1lbnRSZXNwb25zZSIAYgZwcm90bzM="));
+          "UmVxdWVzdBIKCgJpZBgBIAEoAxIOCgZhbW91bnQYAiABKAUiMQoTUHJvY3Vy",
+          "ZW1lbnRSZXNwb25zZRIKCgJpZBgBIAEoAxIOCgZhbW91bnQYAiABKAUyUAoP",
+          "UHJvY3VyZW1lbnRHUlBDEj0KDkdldFByb2N1cmVtZW50EhMuUHJvY3VyZW1l",
+          "bnRSZXF1ZXN0GhQuUHJvY3VyZW1lbnRSZXNwb25zZSIAYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::ProcurementRequest), global::ProcurementRequest.Parser, new[]{ "Id", "Amount" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ProcurementResponse), global::ProcurementResponse.Parser, new[]{ "Amount" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProcurementResponse), global::ProcurementResponse.Parser, new[]{ "Id", "Amount" }, null, null, null, null)
         }));
   }
   #endregion
@@ -97,10 +97,10 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
 
   /// <summary>Field number for the "amount" field.</summary>
   public const int AmountFieldNumber = 2;
-  private long amount_;
+  private int amount_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public long Amount {
+  public int Amount {
     get { return amount_; }
     set {
       amount_ = value;
@@ -132,7 +132,7 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
   public override int GetHashCode() {
     int hash = 1;
     if (Id != 0L) hash ^= Id.GetHashCode();
-    if (Amount != 0L) hash ^= Amount.GetHashCode();
+    if (Amount != 0) hash ^= Amount.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -155,9 +155,9 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
       output.WriteRawTag(8);
       output.WriteInt64(Id);
     }
-    if (Amount != 0L) {
+    if (Amount != 0) {
       output.WriteRawTag(16);
-      output.WriteInt64(Amount);
+      output.WriteInt32(Amount);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -173,9 +173,9 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
       output.WriteRawTag(8);
       output.WriteInt64(Id);
     }
-    if (Amount != 0L) {
+    if (Amount != 0) {
       output.WriteRawTag(16);
-      output.WriteInt64(Amount);
+      output.WriteInt32(Amount);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -190,8 +190,8 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
     if (Id != 0L) {
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
     }
-    if (Amount != 0L) {
-      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Amount);
+    if (Amount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Amount);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -208,7 +208,7 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
     if (other.Id != 0L) {
       Id = other.Id;
     }
-    if (other.Amount != 0L) {
+    if (other.Amount != 0) {
       Amount = other.Amount;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -231,7 +231,7 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
           break;
         }
         case 16: {
-          Amount = input.ReadInt64();
+          Amount = input.ReadInt32();
           break;
         }
       }
@@ -254,7 +254,7 @@ public sealed partial class ProcurementRequest : pb::IMessage<ProcurementRequest
           break;
         }
         case 16: {
-          Amount = input.ReadInt64();
+          Amount = input.ReadInt32();
           break;
         }
       }
@@ -298,6 +298,7 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ProcurementResponse(ProcurementResponse other) : this() {
+    id_ = other.id_;
     amount_ = other.amount_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -308,12 +309,24 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
     return new ProcurementResponse(this);
   }
 
-  /// <summary>Field number for the "amount" field.</summary>
-  public const int AmountFieldNumber = 1;
-  private long amount_;
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 1;
+  private long id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public long Amount {
+  public long Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "amount" field.</summary>
+  public const int AmountFieldNumber = 2;
+  private int amount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Amount {
     get { return amount_; }
     set {
       amount_ = value;
@@ -335,6 +348,7 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (Id != other.Id) return false;
     if (Amount != other.Amount) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -343,7 +357,8 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (Amount != 0L) hash ^= Amount.GetHashCode();
+    if (Id != 0L) hash ^= Id.GetHashCode();
+    if (Amount != 0) hash ^= Amount.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -362,9 +377,13 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (Amount != 0L) {
+    if (Id != 0L) {
       output.WriteRawTag(8);
-      output.WriteInt64(Amount);
+      output.WriteInt64(Id);
+    }
+    if (Amount != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Amount);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -376,9 +395,13 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Amount != 0L) {
+    if (Id != 0L) {
       output.WriteRawTag(8);
-      output.WriteInt64(Amount);
+      output.WriteInt64(Id);
+    }
+    if (Amount != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Amount);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -390,8 +413,11 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (Amount != 0L) {
-      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Amount);
+    if (Id != 0L) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+    }
+    if (Amount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Amount);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -405,7 +431,10 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
     if (other == null) {
       return;
     }
-    if (other.Amount != 0L) {
+    if (other.Id != 0L) {
+      Id = other.Id;
+    }
+    if (other.Amount != 0) {
       Amount = other.Amount;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -424,7 +453,11 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          Amount = input.ReadInt64();
+          Id = input.ReadInt64();
+          break;
+        }
+        case 16: {
+          Amount = input.ReadInt32();
           break;
         }
       }
@@ -443,7 +476,11 @@ public sealed partial class ProcurementResponse : pb::IMessage<ProcurementRespon
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          Amount = input.ReadInt64();
+          Id = input.ReadInt64();
+          break;
+        }
+        case 16: {
+          Amount = input.ReadInt32();
           break;
         }
       }

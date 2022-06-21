@@ -19,6 +19,8 @@ export class MakeAppointmentComponent implements OnInit {
   appointments:any
   displayedColumns: string[] = ['AppointmentDate', 'AppointmentTime', 'Hospital','Doctor','Schedule'];
   DropdownVar = 0;
+  errorMessage:any;
+  errorMessage2:any;
 
   onSelect(x: number){
    this.DropdownVar = x;
@@ -87,6 +89,9 @@ async ngOnInit(): Promise<void> {
          
           
           
+        },(error:any) => {
+          console.log(error)
+          this.errorMessage = error.error;
         });
         
 
@@ -109,6 +114,9 @@ async ngOnInit(): Promise<void> {
       appointmentId : id
     }).subscribe((response:any)=>{
       this.router.navigate(['/patient'])
+    },(error:any) => {
+      console.log(error)
+      this.errorMessage2 = error.error;
     })
   }
 

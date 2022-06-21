@@ -8,5 +8,6 @@ namespace Pharmacy.Repository.Core
 {
     public interface IProcurementRepository : IBaseRepository<Procurement>
     {
+        public Procurement GetProcurement(long id);
     }
 }

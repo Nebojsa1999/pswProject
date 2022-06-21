@@ -6,7 +6,7 @@ using PSWProjekat.Models;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IPrescriptionService
+    public interface IPrescriptionService : IBaseService<Prescription>
     {
         public IEnumerable<Prescription> getAll();
 

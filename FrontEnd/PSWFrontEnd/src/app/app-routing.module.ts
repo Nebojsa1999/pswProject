@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
 import { PatientpageComponent } from './patientpage/patientpage.component';
 import { RegisterComponent } from './register/register.component';
+import { RequestMedicineComponent } from './request-medicine/request-medicine.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path:'feedBackLists',
     component:FeedbacklistComponent
+  },
+  {
+    path:'request',
+    component:RequestMedicineComponent
   },
   { path: 'home', component: FrontpageComponent },
   { path: '**', component: FrontpageComponent }

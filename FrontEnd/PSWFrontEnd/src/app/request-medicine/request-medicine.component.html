@@ -1,5 +1,5 @@
 <body>
-<ul>
+    <ul>
     <li><a href="/doctorPage">Home</a></li>
     <li><a href="/prescription">Create prescription</a></li>
     <li><a href="/request">Request medicine</a></li>
@@ -7,28 +7,20 @@
   
   
   </ul>
-<div class="page">
+  <div class="page">
     <mat-card>
         <mat-card-content>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <h2>Create prescription for patient</h2>
+            <h2>Choose medicine:</h2>
             <mat-form-field class="full-width-input">
-              <mat-select  formControlName="patient">
-                  <mat-option *ngFor="let patient of patients" [value]="patient.name">{{ patient.name }}</mat-option>
+              <mat-select  formControlName="medicine">
+                  <mat-option *ngFor="let medicine of medicines" [value]="medicine.id">{{ medicine.medicine.name }} </mat-option>
                 </mat-select>
               <mat-error>
-               Please choose a patient
+               Please choose a medicine
               </mat-error>
             </mat-form-field>  
-            <mat-form-field class="full-width-input">
-                <mat-select  formControlName="medicine">
-                    <mat-option *ngFor="let medicine of medicines" [value]="medicine.id">{{ medicine.name }}</mat-option>
-                  </mat-select>
-                <mat-error>
-                 Please choose medicine
-                </mat-error>
-              </mat-form-field> 
-              
+            
               <mat-form-field class="full-width-input">
                 <input matInput placeholder="amount" formControlName="amount" required>
                 <mat-error>
@@ -40,9 +32,10 @@
             <button mat-raised-button color="primary">Submit</button>
           </form>
         </mat-card-content>
+        Added:{{newAmount?.amount}}  
         <div *ngIf="errorMessage" >
-          <strong>Warning!{{errorMessage | json}}</strong> 
-        </div> 
+            <strong>Warning!{{errorMessage | json}}</strong> 
+          </div> 
       </mat-card>
-    </div>
+  </div>
 </body>

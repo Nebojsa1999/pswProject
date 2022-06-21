@@ -52,7 +52,7 @@ namespace Pharmacy.Service
                 prescriptionMedicine.Medicine = medicine;
                 unitOfWork.PrescriptionMedicine.Add(prescriptionMedicine);
                 _ = unitOfWork.Complete();
-                Console.WriteLine(prescriptionMedicine);
+                System.Diagnostics.Debug.WriteLine(prescriptionMedicine.Amount);
 
             }
 

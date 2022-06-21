@@ -7,10 +7,11 @@ service ProcurementGRPC {
 
 message ProcurementRequest {
   int64 id = 1;
-  int64 amount = 2;
+  int32 amount = 2;
 }
 
 message ProcurementResponse {
-  int64 amount = 1;
+  int64 id = 1;
+  int32 amount = 2;
 }
 

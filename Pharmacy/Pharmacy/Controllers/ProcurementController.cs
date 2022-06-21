@@ -22,14 +22,12 @@ namespace Pharmacy.Controllers
             this.procurementService = procurementService;
         }
 
-       // [Route("requestMedicine")]
-        //[HttpGet]
-
-//        public IActionResult RequestMedicine()
-  //      {
-    //        ProcurementRequest request = new ProcurementRequest { Amount = 1, Id = 1 };
-      //      return Ok(procurementGRPCService.GetProcurement(request));
-        //}
+       [HttpGet]
+       [Route("getAllProcurements")]
+        public IActionResult GetAll()
+        {
+            return Ok(procurementService.getAll());
+        }
 
     }
 }

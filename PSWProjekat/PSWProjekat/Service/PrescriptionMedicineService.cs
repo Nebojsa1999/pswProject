@@ -40,7 +40,14 @@ namespace PSWProjekat.Service
             try
             {
                 using UnitOfWork unitOfWork = new(new ProjectContext());
+                procrument = unitOfWork.Procruments.GetProcurementBasedOnMedicine(entity.MedicineId);
 
+                procrument.Amount = procrument.Amount - entity.Amount;
+                prescriptionMedicine.Amount = entity.Amount;
+                if (procrument.Amount < 0)
+                {
+                    return null;
+                }
                 prescription.DateCreated = DateTime.Now;
                 prescription.DateUpdated = DateTime.Now;
                 prescription.DateOfCreation = DateTime.Now;
@@ -53,16 +60,10 @@ namespace PSWProjekat.Service
 
                 prescriptionMedicine.Prescription = unitOfWork.Prescriptions.Get(prescription.Id);
                 prescriptionMedicine.Medicine = unitOfWork.Medicines.Get(entity.MedicineId);
-                prescriptionMedicine.Amount = entity.Amount;
                 prescriptionMedicine.DateCreated = DateTime.Now;
                 prescriptionMedicine.DateUpdated = DateTime.Now;
                 prescriptionMedicine.Deleted = false;
-                procrument = unitOfWork.Procruments.GetProcurementBasedOnMedicine(entity.MedicineId);
-                procrument.Amount = procrument.Amount - entity.Amount;
-                if(procrument.Amount < 0 )
-                {
-                    return null;
-                }
+                
                 unitOfWork.Procruments.Update(procrument);
     
                 unitOfWork.PrescriptionMedicine.Add(prescriptionMedicine);

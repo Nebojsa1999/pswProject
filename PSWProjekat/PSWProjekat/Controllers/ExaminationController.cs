@@ -40,7 +40,14 @@ namespace PSWProjekat.Controllers
         [Route("scheduleExamination")]
         public IActionResult ScheduleExamination(ExaminationDTO examinationDTO)
         {
-            return Ok(examinationService.ScheduleExamination(examinationDTO));
+            if (examinationService.ScheduleExamination(examinationDTO) == null)
+            {
+                return BadRequest("This appointment is already scheduled!");
+            }
+            else
+            {
+                return Ok(examinationService.ScheduleExamination(examinationDTO));
+            }
         }
 
         [HttpPost]
@@ -48,7 +55,14 @@ namespace PSWProjekat.Controllers
 
         public IActionResult ScheduleExaminationSpecialist(ExaminationSpecialistDTO examinationSpecialistDTO)
         {
-            return Ok(examinationService.ScheduleExaminationSpecialist(examinationSpecialistDTO));
+            if (examinationService.ScheduleExaminationSpecialist(examinationSpecialistDTO) == null)
+            {
+                return BadRequest("This appointment is already scheduled!");
+            }
+            else
+            {
+                return Ok(examinationService.ScheduleExaminationSpecialist(examinationSpecialistDTO));
+            }
         }
 
         [HttpPut]

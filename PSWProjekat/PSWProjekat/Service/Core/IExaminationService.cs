@@ -7,7 +7,7 @@ using PSWProjekat.Models.DTO;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IExaminationService
+    public interface IExaminationService : IBaseService<Examination>
     {
         public IEnumerable<Examination> GetAllExaminationPresentForUser(long id);
         public IEnumerable<Examination> GetAllExaminationPastForUser(long id);

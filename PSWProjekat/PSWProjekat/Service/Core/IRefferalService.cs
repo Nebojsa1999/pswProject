@@ -6,7 +6,7 @@ using PSWProjekat.Models;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IRefferalService
+    public interface IRefferalService : IBaseService<Refferal>
     {
         public IEnumerable<Refferal> getAll();
 

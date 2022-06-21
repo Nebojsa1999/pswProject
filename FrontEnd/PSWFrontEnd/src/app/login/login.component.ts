@@ -47,19 +47,21 @@ export class LoginComponent implements OnInit {
           clientId: 'z68j5pm3s9',
           clientSecret:'r5h0du3dv1'
         }).subscribe((response : any) => {
-          console.log(response)
           let token = response.token;
           localStorage.setItem("token", token);
-          
           this.apiService.getCurrentUser().subscribe((response : any) => {
             let user = response;
 
             localStorage.setItem('user', JSON.stringify(user));
             this.navigate()
-          });
-        });
+          })
+        },(error:any) => {
+          console.log(error)
+          this.errorMessage = error.error;
+        })
 
-      } catch (err) {
+      }
+       catch (err) {
         this.loginInvalid = true;
       }
     } else {

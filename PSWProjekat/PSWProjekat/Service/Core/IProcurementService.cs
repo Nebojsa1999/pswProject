@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using PSWProjekat.Models;
 namespace PSWProjekat.Service.Core
 {
-    public interface IProcurementService
+    public interface IProcurementService : IBaseService<Procurement>
     {
         public IEnumerable<Procurement> getAll();
 

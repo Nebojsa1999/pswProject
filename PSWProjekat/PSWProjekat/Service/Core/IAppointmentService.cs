@@ -7,7 +7,7 @@ using PSWProjekat.Models.DTO;
 
 namespace PSWProjekat.Service.Core
 {
-    public interface IAppointmentService
+    public interface IAppointmentService : IBaseService<Appointment>
     {
         public IEnumerable<Appointment> getAll();
         public IEnumerable<Appointment> GetAppointment(AppointmentDTO appointmentDTO);

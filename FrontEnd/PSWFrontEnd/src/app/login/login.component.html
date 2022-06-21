@@ -10,6 +10,7 @@
 
 </ul>
 <div class="page">
+  
     <mat-card>
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -34,5 +35,9 @@
         <a [routerLink]="['/register']">Don't have an account? Register here</a>
       </mat-card-content>
     </mat-card>
+    
   </div>
+  <div *ngIf="errorMessage" >
+    <strong>Warning!{{errorMessage | json}}</strong> 
+  </div>  
 </body>

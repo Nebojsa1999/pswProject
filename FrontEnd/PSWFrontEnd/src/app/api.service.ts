@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   baseURL = "https://localhost:44311";
+  pharmacyULR = "https://localhost:5001";
   constructor(private http: HttpClient) { }
 
   getAuthHeader() : any {
@@ -113,7 +114,10 @@ export class ApiService {
   removeFromSpam(data:any){
     return this.http.put(this.baseURL + "/api/user/removeFromSpammerList/" + data.id,data)
   }
-  getMedicineGRPC(){
-    return this.http.get(this.baseURL + "/api/procurement/getMedicines")
+  getMedicineGRPC(data:any){
+    return this.http.post(this.baseURL + "/api/procurement/getMedicines",data)
+  }
+  getMedicinePharmacy(){
+    return this.http.get(this.pharmacyULR + "/api/procurement/getAllProcurements")
   }
 }

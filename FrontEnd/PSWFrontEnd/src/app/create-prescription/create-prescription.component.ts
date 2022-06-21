@@ -16,6 +16,7 @@ export class CreatePrescriptionComponent implements OnInit {
   patients:any
   medicines:any
   user:any
+  errorMessage:any
     constructor(
       private router:Router,
       private apiService:ApiService,
@@ -73,6 +74,9 @@ export class CreatePrescriptionComponent implements OnInit {
          this.router.navigate(['/doctorPage'])
           
           
+        },(error:any) => {
+          console.log(error)
+          this.errorMessage = error.error;
         });
         
 

@@ -36,6 +36,7 @@ import { PatientpageComponent } from './patientpage/patientpage.component';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { CreatePrescriptionComponent } from './create-prescription/create-prescription.component';
 import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
+import { RequestMedicineComponent } from './request-medicine/request-medicine.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
     PatientpageComponent,
     DoctorPageComponent,
     CreatePrescriptionComponent,
-    FeedbacklistComponent
+    FeedbacklistComponent,
+    RequestMedicineComponent
   ],
   imports: [
     BrowserModule,

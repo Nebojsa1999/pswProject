@@ -6,6 +6,7 @@ using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using PSWProjekat.Configuration;
 using PSWProjekat.Models;
+using PSWProjekat.Models.DTO;
 using PSWProjekat.Service;
 using PSWProjekat.Service.Core;
 using static ProcurementGRPC;
@@ -29,23 +30,26 @@ namespace PSWProjekat.Controllers
             return Ok(procrumentService.getAll());
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("getMedicines")]
-        public IActionResult GetMedicines()
+        public IActionResult GetMedicines(ProcurementDTO procurementDTO)
         {
             try
             {
                 using var channel = GrpcChannel.ForAddress("https://localhost:5001");
                 var client = new ProcurementGRPC.ProcurementGRPCClient(channel);
-                long Id = 1;
-                ProcurementRequest request = new ProcurementRequest() { Id = Id };
+                long Id = procurementDTO.Id;
+                int Amount = procurementDTO.Amount;
+                ProcurementRequest request = new ProcurementRequest() { Id = Id ,Amount = Amount };
                 ProcurementResponse response = client.GetProcurement(request);
-
+                Procurement procurement = procrumentService.Get(request.Id);
+                procurement.Amount = procurement.Amount + request.Amount;
+                procrumentService.Update(procurement.Id, procurement);
                 return Ok(response);
             }
             catch (Exception ex) 
             {
-                return Ok();
+                return BadRequest("Cannot insert choose a different amount");
             }
         }
     }

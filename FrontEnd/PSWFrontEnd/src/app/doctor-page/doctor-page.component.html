@@ -2,6 +2,7 @@
 <ul>
     <li><a href="/doctorPage">Home</a></li>
     <li><a href="/prescription">Create prescription</a></li>
+    <li><a href="/request">Request medicine</a></li>
     <li><a href="/home">Log out</a></li>
   
   
@@ -13,7 +14,7 @@
         <h2>Schedule an appointment for patient</h2>
         <mat-form-field class="full-width-input">
           <mat-select  formControlName="appointment">
-              <mat-option *ngFor="let appointment of appointmentSpecialists" [value]="appointment.id">{{ appointment.userDoctor.name }}</mat-option>
+              <mat-option *ngFor="let appointment of appointmentSpecialists" [value]="appointment.id">{{ appointment.userDoctor.name }} {{appointment.appointmentDate}}</mat-option>
             </mat-select>
           <mat-error>
            Please choose an appointment
@@ -38,7 +39,11 @@
         <button mat-raised-button color="primary">Submit</button>
       </form>
     </mat-card-content>
+    <div *ngIf="errorMessage" >
+    <strong>Warning!{{errorMessage | json}}</strong> 
+  </div> 
   </mat-card>
-  <button (click)="GetMedicine()">Medicine</button>
+
+  
 </div>
 </body>

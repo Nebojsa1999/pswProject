@@ -28,7 +28,7 @@ namespace PSWProjekat.Repository
            public IEnumerable<Appointment> GetAppointmentDoctorAndDate(long doctor, DateTime dateStart, DateTime dateEnd)
             {
                 List<Appointment> list = new List<Appointment>();
-                foreach (Entity entity in ProjectContext.Appointments.Where(x => x.UserDoctor.Id == doctor  && x.AppointmentDate.Date >= dateStart.Date && x.AppointmentDate.Date <= dateEnd.Date && x.AppointmentDate.Date >= DateTime.Now.Date).Include(x => x.UserDoctor).Include(x => x.Hospital).ToList())
+                foreach (Entity entity in ProjectContext.Appointments.Where(x => x.UserDoctor.Id == doctor && x.UserDoctor.UserType == Models.Enums.UserType.Doctor_General_Practioner  && x.AppointmentDate.Date >= dateStart.Date && x.AppointmentDate.Date <= dateEnd.Date && x.AppointmentDate.Date >= DateTime.Now.Date).Include(x => x.UserDoctor).Include(x => x.Hospital).ToList())
                 {
                     list.Add((Appointment)entity);
                 }
@@ -38,7 +38,7 @@ namespace PSWProjekat.Repository
         public IEnumerable<Appointment> GetAppointmentDoctor(long doctor,DateTime dateStart,DateTime dateEnd)
         {
             List<Appointment> list = new List<Appointment>();
-            foreach (Entity entity in ProjectContext.Appointments.Where(x => x.UserDoctor.Id == doctor && x.AppointmentDate <= dateEnd.AddDays(10) && x.AppointmentDate >= dateStart.AddDays(-10) && x.AppointmentDate>DateTime.Now).Include(x=> x.Hospital).Include(x=> x.UserDoctor))
+            foreach (Entity entity in ProjectContext.Appointments.Where(x => x.UserDoctor.Id == doctor && x.UserDoctor.UserType == Models.Enums.UserType.Doctor_General_Practioner && x.AppointmentDate <= dateEnd.AddDays(10) && x.AppointmentDate >= dateStart.AddDays(-10) && x.AppointmentDate>DateTime.Now).Include(x=> x.Hospital).Include(x=> x.UserDoctor))
             {
                 Console.WriteLine(dateEnd.AddDays(10));
                 Console.WriteLine(dateStart.AddDays(-10));
@@ -51,7 +51,7 @@ namespace PSWProjekat.Repository
         public IEnumerable<Appointment> GetAppointmentDate(DateTime dateStart, DateTime dateEnd)
         {
             List<Appointment> list = new List<Appointment>();
-            foreach (Entity entity in ProjectContext.Appointments.Where(x => x.AppointmentDate.Date >= dateStart.Date && x.AppointmentDate.Date <= dateEnd.Date   && x.AppointmentDate>DateTime.Now).Include(x => x.Hospital).Include(x => x.UserDoctor))
+            foreach (Entity entity in ProjectContext.Appointments.Where(x => x.AppointmentDate.Date >= dateStart.Date && x.AppointmentDate.Date <= dateEnd.Date   && x.AppointmentDate>DateTime.Now && x.UserDoctor.UserType == Models.Enums.UserType.Doctor_General_Practioner).Include(x => x.Hospital).Include(x => x.UserDoctor))
             {
                 list.Add((Appointment)entity);
             }
@@ -67,7 +67,7 @@ namespace PSWProjekat.Repository
             IEnumerable<Appointment> appointments =  ProjectContext.Appointments.Include(x => x.UserDoctor);
             foreach(Appointment appointment in appointments)
             {
-                if(appointment.UserDoctor.UserType == Models.Enums.UserType.Doctor_Specialist)
+                if(appointment.UserDoctor.UserType == Models.Enums.UserType.Doctor_Specialist && appointment.AppointmentDate.Date >= DateTime.Now)
                 {
                     appointmentSpecialists.Add(appointment);
                 }

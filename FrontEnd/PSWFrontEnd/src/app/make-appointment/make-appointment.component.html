@@ -31,17 +31,24 @@
             <mat-date-range-picker #rangePicker>
             </mat-date-range-picker>
           </mat-form-field>
-         
-          <mat-radio-group  formControlName="priority" >  
+
+          <mat-radio-group  formControlName="priority" required>  
             <mat-radio-button value="0" >Doctor</mat-radio-button>  
-            <mat-radio-button value="1">Date</mat-radio-button>  
-          </mat-radio-group>     
-              <br>
+            <mat-radio-button value="1">Date</mat-radio-button>
+          </mat-radio-group>  
+         
+
+           
+          <br>
           <br>
           <button mat-raised-button color="primary" (click)="onSelect(2)">Submit</button>
         </form>
+        <div *ngIf="errorMessage" >
+          <strong>Warning!{{errorMessage | json}}</strong> 
+        </div> 
       </mat-card-content>
     </mat-card>
+    
   <div id="right" *ngIf="DropdownVar === 2" class="dropdown-content">
   <mat-table mat-table [dataSource]="appointments">
      
@@ -71,7 +78,10 @@
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </mat-table>
+<div *ngIf="errorMessage2" >
+  <strong>Warning!{{errorMessage2 | json}}</strong> 
+</div> 
 </div>
 </div>
-
+ 
 </body>
