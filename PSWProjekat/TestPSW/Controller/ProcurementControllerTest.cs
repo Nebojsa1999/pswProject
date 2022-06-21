@@ -37,5 +37,13 @@ namespace TestPSW.Controller
             Assert.NotNull(procruments);
 
         }
+        [Test]
+        public void Test2()
+        {
+            ProcurementController procrumentController = new ProcurementController(projConfig, userService, procrumentService);
+            IActionResult procruments = procrumentController.GetMedicines();
+            Assert.NotNull(procruments);
+
+        }
     }
 }
